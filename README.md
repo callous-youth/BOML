@@ -16,11 +16,11 @@ ReadMe.md file contains recommended instruction for training meta-initialization
 
 Meta-learning is the branch of machine learning that deals with the problem of \learning to learn" and has recently emerged as a potential learning paradigm that can gain experience over previous tasks and generalize that experience to unseen tasks proficiently.
 
-We first present a general bilevel optimization paradigm to  unify different types of meta-learning approaches. Specifically, we define the meta dataset as $D=\{D^i\}_{i=1}^N$, where $D^i=D_{tr}^i\cup D_{val}^i$ is linked to the $i$-th task and $D^i_{tr}$ and $D^i_{val}$ respectively denote the training and validation sets. We denote the parameters of the base-learner as $y^i$ for the $i$-th task. Then the meta-learner can be thought of as a function that maps the dataset to the parameters of base-learner for new tasks, i.e., $y^i=\Psi(x,D}^i)$, where $x$ is the parameter of the meta-leaner and should be shared across tasks. With the above notations, we can formulate the general purpose of meta-learning tasks as the following bilevel optimization model:
+We first present a general bilevel optimization paradigm to  unify different types of meta-learning approaches. Specifically, we define the meta dataset as $D=\{ D^i \}_{i=1}^N$, where $D^i = D_{tr}^i \cup D_{val}^i$ is linked to the $i$-th task and $D^i_{tr}$ and $D^i_{val}$ respectively denote the training and validation sets. We denote the parameters of the base-learner as $y^i$ for the $i$-th task. Then the meta-learner can be thought of as a function that maps the dataset to the parameters of base-learner for new tasks, i.e., $y^i=\Psi(x,D}^i)$, where $x$ is the parameter of the meta-leaner and should be shared across tasks. With the above notations, we can formulate the general purpose of meta-learning tasks as the following bilevel optimization model:
 
-\begin{equation}\min _{x} F\left(x,\left\{y^{i}\right\}_{i=1}^{N}\right), \quad \text { s.t. } \quad y^{i} \in \arg \min _{v^{i}} f\left(x, y^{i}\right), i=1, \cdots, N\end{equation}
+$$\min _{x} F\left(x,\left\{y^{i}\right\}_{i=1}^{N}\right), \quad \text { s.t. } \quad y^{i} \in \arg \min _{y^{i}} f\left(x, y^{i}\right), i=1, \cdots, N$$
 
-where $f(\mathbf{x},\mathbf{y}^i)=\ell(\mathbf{x},\mathbf{y}^i,\mathcal{D}^i_{\mathtt{tr}})$ and $F(\mathbf{x},\{\mathbf{y}^i\}_{i=1}^N)=1/N\sum_{i=1}^N\ell(\mathbf{x},\mathbf{y}^i,\mathcal{D}^i_{\mathtt{val}})$ are called the lower and upper objectives, respectively. Here $\ell$ denotes task-specific loss functions (e.g., cross-entropy).
+where $f(x,y^i)=\ell(x,y^i,D^i_{tr})$ and $F(x,\{y^i\}_{i=1}^N)=1/N\sum_{i=1}^N\ell(x,y^i,D^i_{val})$ are called the lower and upper objectives, respectively. Here $\ell$ denotes task-specific loss functions (e.g., cross-entropy).
 
 ## Hierarchical structure of LL and UL strategies
 Based on the above optimization details, BOML constructs six modules as basic frame-
