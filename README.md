@@ -16,7 +16,7 @@ ReadMe.md file contains recommended instruction for training meta-initialization
 
 Meta-learning is the branch of machine learning that deals with the problem of \learning to learn" and has recently emerged as a potential learning paradigm that can gain experience over previous tasks and generalize that experience to unseen tasks proficiently.
 
-We first present a general bilevel optimization paradigm to  unify different types of meta-learning approaches. Specifically, we define the meta dataset as $D=\{ D^i \}_{i=1}^N$, where $D^i = D_{tr}^i \cup D_{val}^i$ is linked to the $i$-th task and $D^i_{tr}$ and $D^i_{val}$ respectively denote the training and validation sets. We denote the parameters of the base-learner as $y^i$ for the $i$-th task. Then the meta-learner can be thought of as a function that maps the dataset to the parameters of base-learner for new tasks, i.e., $y^i=\Psi(x,D}^i)$, where $x$ is the parameter of the meta-leaner and should be shared across tasks. With the above notations, we can formulate the general purpose of meta-learning tasks as the following bilevel optimization model:
+We first present a general bilevel optimization paradigm to unify different types of meta-learning approaches. Specifically, we define the meta dataset as $D=\{ D^i \}_{i=1}^N$ ,
 
 $$\min _{x} F\left(x,\left\{y^{i}\right\}_{i=1}^{N}\right), \quad \text { s.t. } \quad y^{i} \in \arg \min _{y^{i}} f\left(x, y^{i}\right), i=1, \cdots, N$$
 
