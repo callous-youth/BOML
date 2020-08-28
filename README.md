@@ -1,81 +1,44 @@
 
 # BOML - A Bilevel Optimization Library in Python for Multi-Task and Meta Learning
-![Travis Status](https://travis-ci.com/dut-media-lab/BOML.svg?branch=master)
-![codecov](https://codecov.io/gh/dut-media-lab/BOML/branch/master/graph/badge.svg)
-![Documentation Status](https://readthedocs.org/projects/pybml/badge/?version=latest)
+![Travis Status](https://travis-ci.com/bmlsoc/BOML.svg?branch=master)
 ![license](https://img.shields.io/badge/license-MIT-000000.svg)
-![Language](https://img.shields.io/github/languages/top/dut-media-lab/BOML)
-![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
+![Documentation Status](https://readthedocs.org/projects/pybml/badge/?version=latest)
+![Language](https://img.shields.io/badge/language-Python-brightgreen.svg)
+
 
 
 BOML is a modularized optimization library that unifies several ML algorithms into a common bilevel optimization framework. It provides interfaces to implement popular bilevel optimization algorithms, so that you could quickly build your own meta learning neural network and test its performance.
 
-ReadMe.md file contains recommended instruction for training meta-initialization based and meta-feature based approaches in few-shot learning field.
+ReadMe.md file contains recommended instruction for training Maml-based and Meta-representation in few-shot learning field. It's flexible to build your own networks or use structures with attached documentation.
+## Meta Learning and Multitask Learning
 
-## Meta Learning and Bilevel Optimization
+Meta learning works fairly well when facing incoming new tasks by learning an initialization with favorable generalization capability. And it also has good performance even provided with a small amount of training data available, which gives birth to new solutions to the few-shot learning problem.
 
-Meta-learning is the branch of machine learning that deals with the problem of “learning to learn" and has recently emerged as a potential learning paradigm that can gain experience over previous tasks and generalize that experience to unseen tasks proficiently.
+In few-shot learning problems, we consider N-way K-shot classification tasks. For each iteration, $M$ batches of tasks $\{T_{i=1}^{M}\}$ are randomly sampled from distribution $P(T)$ associated with split datasets $D_{i}^{tr}$, $D_{i}^{val}$. Both datasets take the form of $D_{i}=\{(x_{i}^{k}, y_{i}^{k})\}^{K}_{k=1}$. And each K samples $x\in\mathcal{X}$ from the same class are bounded to specific label $y\in\mathcal{Y}$, which can be formulated as a mapping $h(x):\mathcal{X}\rightarrow \mathcal{Y}$. Meta learning aims to improve the model’s classification ability on new instances within N classes after training using sampled tasks. 
 
-We first present a general bilevel optimization paradigm to unify different types of meta-learning approaches. Specifically, we define the meta dataset as $D=\{ D^i \}_{i=1}^N$ , where $D^i = D_{tr}^i \cup D_{val}^i$ is linked to the $i$-th task 
-
-
-$$\min _{x} F\left(x,\left\{y^{i}\right\}_{i=1}^{N}\right), \quad \text { s.t. } \quad y^{i} \in \arg \min _{y^{i}} f\left(x, y^{i}\right), i=1, \cdots, N$$
-
-where $f(x,y^i)=\ell(x,y^i,D^i_{tr})$ and $F(x,\{y^i\}_{i=1}^N)=1/N\sum_{i=1}^N\ell(x,y^i,D^i_{val})$ are called the lower and upper objectives, respectively. Here $\ell$ denotes task-specific loss functions (e.g., cross-entropy).
-
-## Hierarchical structure of LL and UL strategies
-Based on the above optimization details, BOML constructs six modules as basic frame-
-work for our library: boml optimizer, load data, setup model, lower iter, upper iter
-and optimizer. As the foremost optimization modules, the lower iter and upper iter
-manage hierarchically built lower-level and upper-level strategies respectively to define the optimization model.
-
+## Bilevel Structured strategies 
 ![Hierarchically built strategies](https://github.com/dut-media-lab/BOML/blob/master/figures/p1.png)
 
 ## Related Algorithms 
-
-   - [Hyperparameter optimization with approximate gradient(Implicit HG)](https://arxiv.org/abs/1602.02355)
-   - [Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks(MAML)](https://arxiv.org/abs/1703.03400)
-   - [On First-Order Meta-Learning Algorithms(FOMAML)](https://arxiv.org/abs/1803.02999)
-   - [Bilevel Programming for Hyperparameter Optimization and Meta-Learning(Reverse HG)](http://export.arxiv.org/pdf/1806.04910)
-   - [Truncated Back-propagation for Bilevel Optimization(Truncated Reverse HG)](https://arxiv.org/pdf/1810.10667.pdf)
-   - [Gradient-Based Meta-Learning with Learned Layerwise Metric and Subspace(MTNet)](http://proceedings.mlr.press/v80/lee18a/lee18a.pdf)
-   - [Meta-Learning with warped gradient Descent(Warp-Grad))](https://arxiv.org/abs/1909.00025)
-   - [DARTS: Differentiable Architecture Search(DARTS)](https://arxiv.org/pdf/1806.09055.pdf)
-   - [A Generic First-Order Algorithmic Framework for Bi-Level Programming Beyond Lower-Level Singleton(BDA)](https://arxiv.org/pdf/2006.04045.pdf)
+ - [Hyperparameter optimization with approximate gradient(Implicit HG)](https://arxiv.org/abs/1602.02355)
+ - [Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks(MAML)](https://arxiv.org/abs/1703.03400)
+ - [On First-Order Meta-Learning Algorithms(FOMAML)](https://arxiv.org/abs/1803.02999)
+ - [Bilevel Programming for Hyperparameter Optimization and Meta-Learning(Reverse HG)](http://export.arxiv.org/pdf/1806.04910)
+ - [Truncated Back-propagation for Bilevel Optimization(Truncated Reverse HG)](https://arxiv.org/pdf/1810.10667.pdf)
+ - [Gradient-Based Meta-Learning with Learned Layerwise Metric and Subspace(MTNet)](http://proceedings.mlr.press/v80/lee18a/lee18a.pdf)
+ - [Meta-Learning with warped gradient Descent(Warp-Grad))](https://arxiv.org/abs/1909.00025)
+ - [DARTS: Differentiable Architecture Search(DARTS)](https://arxiv.org/pdf/1806.09055.pdf)
+ - [A Generic First-Order Algorithmic Framework for Bi-Level Programming Beyond Lower-Level Singleton(BDA)](https://arxiv.org/pdf/2006.04045.pdf)
 
 ## Package Structure
-![Package Structure of BOML](https://github.com/dut-media-lab/BOML/blob/master/figures/p2.png)
+![Package Structure](https://github.com/dut-media-lab/BOML/blob/master/figures/p2.png)
 
 ## Documentation 
 
-It's flexible to build your own networks or use structures in py_bm.networks. Scripts in the directory named test_script are useful for basic training process.
 For more detailed information of basic function and construction process, please refer to our help page: [Help Documentation](https://bmlsoc.github.io/BOML/)
 
+It's flexible to build your own networks or use structures in py_bm.networks. Scripts in the directory named train_script are useful for basic training process.
+
 Here we give recommended settings for specific hyper paremeters to quickly test performance of popular algorithms.
-
-## License
-
-MIT License
-
-Copyright (c) 2020 Yaohua Liu
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
 
 
