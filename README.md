@@ -14,7 +14,7 @@ ReadMe.md file contains recommended instruction for training Maml-based and Meta
 
 Meta learning works fairly well when facing incoming new tasks by learning an initialization with favorable generalization capability. And it also has good performance even provided with a small amount of training data available, which gives birth to new solutions to the few-shot learning problem.
 
-In few-shot learning problems, we consider N-way K-shot classification tasks. For each iteration, $M$ batches of tasks $\{T_{i=1}^{M}\}$ are randomly sampled from distribution $P(T)$ associated with split datasets $D_{i}^{tr}$, $D_{i}^{val}$. Both datasets take the form of $D_{i}=\{(x_{i}^{k}, y_{i}^{k})\}^{K}_{k=1}$. And each K samples $x\in\mathcal{X}$ from the same class are bounded to specific label $y\in\mathcal{Y}$, which can be formulated as a mapping $h(x):\mathcal{X}\rightarrow \mathcal{Y}$. Meta learning aims to improve the model’s classification ability on new instances within N classes after training using sampled tasks. 
+![Hierarchically built strategies](https://latex.codecogs.com/gif.latex?\begin{equation}\min&space;_{\mathbf{x}}&space;F\left(\mathbf{x},\left\{\mathbf{y}^{i}\right\}_{i=1}^{N}\right),&space;\quad&space;\text&space;{&space;s.t.&space;}&space;\quad&space;\mathbf{y}^{i}&space;\in&space;\arg&space;\min&space;_{\mathbf{y}^{i}}&space;f\left(\mathbf{x},&space;\mathbf{y}^{i}\right),&space;i=1,&space;\cdots,&space;N\end{equation})
 
 ## Bilevel Structured strategies 
 ![Hierarchically built strategies](https://github.com/dut-media-lab/BOML/blob/master/figures/p1.png)
