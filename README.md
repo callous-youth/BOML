@@ -14,7 +14,7 @@ ReadMe.md file contains recommended instruction for training Maml-based and Meta
 
 Meta learning works fairly well when facing incoming new tasks by learning an initialization with favorable generalization capability. And it also has good performance even provided with a small amount of training data available, which gives birth to new solutions to the few-shot learning problem.
 
-![Hierarchically built strategies](https://latex.codecogs.com/gif.latex?\min&space;_{\mathbf{x}}&space;F\left(\mathbf{x},\left\{\mathbf{y}^{i}\right\}_{i=1}^{N}\right),&space;\quad&space;\text&space;{&space;s.t.&space;}&space;\quad&space;\mathbf{y}^{i}&space;\in&space;\arg&space;\min&space;_{\mathbf{y}^{i}}&space;f\left(\mathbf{x},&space;\mathbf{y}^{i}\right),&space;i=1,&space;\cdots,&space;N)
+![Hierarchically built strategies](https://latex.codecogs.com/gif.latex?\min\limits_{\mathbf{x}}&space;F(\mathbf{x},\{\mathbf{y}^i\}_{i=1}^N),&space;\quad&space;s.t.&space;\quad&space;\mathbf{y}^i\in\arg\min\limits_{\mathbf{y}^i}f(\mathbf{x},\mathbf{y}^i),&space;\&space;i=1,\cdots,N,\label{eq:bo})
 
 ## Bilevel Structured Optimization Routine 
 ![Hierarchically built strategies](https://github.com/dut-media-lab/BOML/blob/master/figures/p1.png)
